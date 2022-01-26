@@ -1,0 +1,106 @@
+
+<meta charset=UTF-8>
+
+<body style="background-color:rgb(245, 245, 220);">
+</body>
+
+<br>
+<h1 style="text-align:center">ENCRIPTADOR DE TEXTO</h1>
+<br>
+<textarea type="text" placeholder="Ingrese el mensaje, no se permiten acentos o caracteres especiales." id="entrada" style="width:48%; height:30%"></textarea>
+<textarea type="text" placeholder="Salida." id="salida"  style="width:48%; height:30%"></textarea>
+<br>
+<br>
+<button id="encriptar"    style="width:15.8%; border-color:green"> Encriptar    </button>
+<button id="desencriptar" style="width:15.8%; border-color:red">   Desencriptar </button>
+<button id="reset"        style="width:15.8%">                     Reset        </button>
+<button id="copiar"       style="width:15.8%">                     Copiar Texto </button>
+<br>
+<br>
+<br>
+<button id="instagram"> <img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" height ="20" width="20" /></button>
+<p face="Comic Sans">By Mauricio Estrella</p>
+
+<script>
+
+function instagramMau(){
+	window.open("https://www.instagram.com/mauriciolavider/?hl=es-la")
+}
+
+function copiarTexto(){
+  	mensajeSalida.select();
+  	document.execCommand("copy");
+}
+
+function resetear(){
+	mensajeEntrada.value = "";
+	mensajeSalida.value = "";
+	mensajeEntrada.focus();
+}
+
+function desencriptador(){
+	var entrada = mensajeEntrada.value.toLowerCase();
+
+    claves = ["ai", "enter", "imes", "ober", "ufat"];
+    letras = ["a", "e", "i", "o", "u"];
+
+	for(var i=0; i<5; i++){
+		while(entrada.includes(claves[i])){
+			entrada = entrada.replace(claves[i], letras[i]);
+		}
+	} 
+
+	mensajeSalida.value = entrada
+}
+
+function encriptador(){
+	var entrada = mensajeEntrada.value.toLowerCase();
+
+    encriptado = "";
+
+	for(var i=0; i<entrada.length; i++){
+		switch(entrada[i]){
+			case "a":
+				encriptado += "ai";
+				break;
+			case "e":
+				encriptado += "enter";
+				break;
+			case "i":
+				encriptado += "imes";
+				break;
+			case "o":
+				encriptado += "ober";
+				break;
+			case "u":
+				encriptado += "ufat";
+				break;
+			default:
+				encriptado += entrada[i];
+		}
+	}
+
+	mensajeSalida.value = encriptado;
+}
+
+var mensajeEntrada = document.querySelector("#entrada");
+var mensajeSalida = document.querySelector("#salida");
+
+var encriptar = document.querySelector("#encriptar");
+encriptar.onclick = encriptador;
+var desencriptar = document.querySelector("#desencriptar")
+desencriptar.onclick = desencriptador;
+
+var reset = document.querySelector("#reset");
+reset.onclick = resetear;
+var copiar = document.querySelector("#copiar");
+copiar.onclick = copiarTexto;
+
+mensajeEntrada.value = ""; 
+mensajeSalida.value = "";
+mensajeEntrada.focus();
+
+var instagram = document.querySelector("#instagram");
+instagram.onclick = instagramMau;
+
+</script>
